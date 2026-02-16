@@ -20,6 +20,9 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <p className="text-primary-foreground text-base md:text-lg font-semibold mb-3">
+              Pakhi Tyagi
+            </p>
             <p className="text-primary-foreground/70 text-sm font-medium tracking-widest uppercase mb-4">
               MSc Data Science · Seeking Opportunities
             </p>
@@ -74,10 +77,10 @@ const Home = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
-              { value: "6+", label: "Projects Completed" },
-              { value: "92%", label: "Best Model Accuracy" },
-              { value: "5", label: "Languages (NLP)" },
-              { value: "£2.1M", label: "Estimated Savings" },
+              { value: "1", label: "Featured Project" },
+              { value: "1M+", label: "Daily Records Processed" },
+              { value: "70%", label: "Reporting Cycle Reduction" },
+              { value: "500k+", label: "Records Modelled" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl md:text-4xl font-bold text-primary">{stat.value}</p>

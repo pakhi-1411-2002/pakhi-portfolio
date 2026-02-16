@@ -75,7 +75,31 @@ const ProjectDetail = () => {
           </div>
         </motion.div>
 
-        {/* Technologies */}
+        
+        {/* Project images */}
+        {project.images && project.images.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 }}
+            className="mt-10 space-y-4"
+          >
+            <h3 className="text-lg font-semibold text-foreground">Project visuals</h3>
+            <div className="grid gap-4">
+              {project.images.map((src, idx) => (
+                <div key={`${src}-${idx}`} className="glass-card rounded-xl overflow-hidden">
+                  <img
+                    src={src}
+                    alt={`${project.title} visual ${idx + 1}`}
+                    className="w-full h-auto block"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+{/* Technologies */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -110,7 +134,9 @@ const ProjectDetail = () => {
               transition={{ delay: 0.2 + i * 0.05 }}
             >
               <h3 className="text-lg font-semibold text-foreground mb-2">{sec.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{sec.content}</p>
+              <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                {sec.content}
+              </div>
             </motion.div>
           ))}
         </div>

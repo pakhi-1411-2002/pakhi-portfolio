@@ -13,102 +13,84 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     type: "work",
-    title: "Data Science Intern",
-    org: "TechCorp Analytics",
-    period: "Jun 2025 – Sep 2025",
+    title: "Software Engineering Trainee, Data Analytics & Systems",
+    org: "Mphasis",
+    period: "Dec 2024 – May 2025",
     bullets: [
-      "Built a customer churn prediction pipeline achieving 92% accuracy, enabling proactive retention strategies",
-      "Designed and deployed a real-time dashboard monitoring KPIs across 12 product lines",
-      "Collaborated with product and engineering teams to integrate ML models into existing data infrastructure",
+      "Maintained and extended Python analytics modules used for automated reporting, alerts, and decision support across enterprise teams",
+      "Designed and optimised SQL Server databases, improving query performance and supporting reliable day-to-day operations",
+      "Built statistical baselines and ML models (including XGBoost) to analyse trends, anomalies, and risk signals across 500k+ records",
+      "Automated pipeline validation checks that improved data consistency and reduced reporting turnaround time by 70%",
     ],
   },
   {
     type: "work",
-    title: "Research Assistant — NLP Lab",
-    org: "University of Southampton",
-    period: "Jan 2025 – May 2025",
+    title: "Python Development Intern, Data Science",
+    org: "IG Drones",
+    period: "Jul 2024 – Oct 2024",
     bullets: [
-      "Fine-tuned multilingual transformer models for sentiment classification across 5 languages",
-      "Published internal report on transfer learning strategies for low-resource language tasks",
-      "Processed and cleaned 1.2M+ text records using custom preprocessing pipelines",
+      "Built and maintained Python pipelines for large-scale video and sensor data used in real-time monitoring workflows",
+      "Created automated data labelling and feature extraction steps, increasing modelling throughput by 33%",
+      "Ran statistical performance analysis and optimisation, reducing operational inefficiencies by 38%",
+      "Containerised end-to-end pipelines to improve reproducibility and deployment reliability",
     ],
   },
   {
     type: "education",
     title: "MSc Data Science",
-    org: "University of Southampton",
-    period: "Sep 2024 – Sep 2025",
+    org: "University of Southampton, UK",
+    period: "Expected Sep 2026",
     bullets: [
-      "Modules: Machine Learning, Deep Learning, NLP, Statistical Methods, Big Data Processing",
-      "Dissertation: Hybrid recommendation systems with cold-start handling",
+      "Coursework includes machine learning, data mining, statistical methods, and applied data engineering",
+      "Focused on building end-to-end projects with clear evaluation and communication",
     ],
   },
   {
     type: "education",
-    title: "BSc Computer Science",
-    org: "University of Leeds",
-    period: "Sep 2021 – Jun 2024",
-    bullets: [
-      "First Class Honours",
-      "Final year project: Real-time anomaly detection in streaming data",
-      "Relevant modules: Databases, Algorithms, Probability & Statistics, Software Engineering",
-    ],
+    title: "BSc Computer Science & Mathematics",
+    org: "St. Joseph’s University, India",
+    period: "Jun 2021 – Jun 2024",
+    bullets: ["Graduated with First-class standing (GPA: 3.8/4.0)"],
   },
 ];
+
+const icon = (type: ExperienceItem["type"]) =>
+  type === "work" ? <Briefcase className="w-5 h-5" /> : <GraduationCap className="w-5 h-5" />;
 
 const Experience = () => (
   <div className="pt-24 section-padding">
     <div className="container mx-auto max-w-3xl">
-      <SectionHeading
-        title="Experience"
-        subtitle="Professional and academic experience shaping my data science practice."
-      />
+      <SectionHeading title="Experience" subtitle="What I&apos;ve worked on, and what I&apos;ve learned along the way." />
 
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-5 top-2 bottom-2 w-px bg-border hidden md:block" />
-
-        <div className="space-y-8">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative md:pl-14"
-            >
-              {/* Icon */}
-              <div className="hidden md:flex absolute left-0 top-1 w-10 h-10 rounded-full bg-primary/10 items-center justify-center">
-                {exp.type === "work" ? (
-                  <Briefcase className="w-4 h-4 text-primary" />
-                ) : (
-                  <GraduationCap className="w-4 h-4 text-primary" />
-                )}
-              </div>
-
-              <div className="glass-card rounded-xl p-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
-                  <div>
-                    <h3 className="font-semibold text-foreground">{exp.title}</h3>
-                    <p className="text-sm text-primary font-medium">{exp.org}</p>
-                  </div>
-                  <span className="text-xs text-muted-foreground font-mono whitespace-nowrap">
-                    {exp.period}
-                  </span>
+      <div className="mt-10 space-y-6">
+        {experiences.map((exp, i) => (
+          <motion.div
+            key={`${exp.org}-${exp.title}`}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 + i * 0.06 }}
+            className="glass-card rounded-xl p-6"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-1 text-primary">{icon(exp.type)}</div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
+                  <span className="text-sm text-muted-foreground">{exp.period}</span>
                 </div>
-                <ul className="space-y-1.5">
-                  {exp.bullets.map((b, j) => (
-                    <li key={j} className="text-sm text-muted-foreground flex gap-2">
-                      <span className="text-primary mt-1.5 flex-shrink-0">•</span>
+                <p className="text-sm text-muted-foreground mt-1">{exp.org}</p>
+
+                <ul className="mt-4 space-y-2 list-disc pl-5 text-muted-foreground">
+                  {exp.bullets.map((b) => (
+                    <li key={b} className="leading-relaxed">
                       {b}
                     </li>
                   ))}
                 </ul>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   </div>
